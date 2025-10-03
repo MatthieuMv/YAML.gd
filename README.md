@@ -2,7 +2,7 @@
 
 # YAML.gd 1.0.0 ![Godot v4.x](https://img.shields.io/badge/Godot-v4.x-%23478cbf) ![Godot v3.x](https://img.shields.io/badge/Godot-v3.x-%23478cbf)
 
-A YAML parser written entirely in GDScript.  
+A YAML parser written entirely in GDScript.
 `YAML.gd` allows you to parse YAML content directly within your projects without requiring C++ modules or compilation, making it easy to integrate and use on any platform supported by Godot.
 
 [!["Buy Me A Coffee"](coffee.png)](https://ko-fi.com/lowlevel1989)
@@ -24,7 +24,7 @@ A YAML parser written entirely in GDScript.
 
 ## ⚠️ Important Warning
 
-Do **not** edit `.yaml` files directly from the Godot editor.  
+Do **not** edit `.yaml` files directly from the Godot editor.
 The editor may automatically convert spaces to tabs, which **breaks YAML syntax** (YAML requires indentation using **spaces only**).
 
 Use an external editor with proper configuration such as:
@@ -38,16 +38,19 @@ Make sure "tabs to spaces" is enabled.
 
 ## Basic usage:
 
+### Parse a string
+
 ```gdscript
-var parser = YAMLParser.new()
+var yaml = "...";
+var result = YAMLParser.parse(yaml)
+if typeof(result) == TYPE_DICTIONARY and result.has("name"):
+    print(result["name"])
+```
 
-var yfile = FileAccess.open(
-                "res://assets/yaml_dot_gd/tests/yamls/basic/test_01.yaml",
-                FileAccess.READ)
-var yaml = yfile.get_as_text()
-yfile.close()
+### Parse a file
 
-var result = parser.parse(yaml)
+```gdscript
+var result = YAMLParser.parse_file("res://assets/yaml_dot_gd/tests/yamls/basic/test_01.yaml")
 if typeof(result) == TYPE_DICTIONARY and result.has("name"):
     print(result["name"])
 ```

@@ -3,7 +3,6 @@ class_name TestAdvanced
 
 # Test advanced YAML features
 func run() -> bool:
-	var parser = YAMLParser.new()
 	var test_count = 0
 	var success_count = 0
 	var f_tmp
@@ -33,7 +32,7 @@ func run() -> bool:
 		}
 	}
 	test_count += 1
-	var result1 = parser.parse(yaml1)
+	var result1 = YAMLParser.parse(yaml1)
 	if result1 == expected1:
 		success_count += 1
 		print("Test 1: PASSED - Complex nested structure")
@@ -60,7 +59,7 @@ func run() -> bool:
 		}
 	}
 	test_count += 1
-	var result2 = parser.parse(yaml2)
+	var result2 = YAMLParser.parse(yaml2)
 	if result2 == expected2:
 		success_count += 1
 		print("Test 2: PASSED - Multiple levels of nesting")
@@ -86,7 +85,7 @@ func run() -> bool:
 		]
 	}
 	test_count += 1
-	var result3 = parser.parse(yaml3)
+	var result3 = YAMLParser.parse(yaml3)
 	if result3 == expected3:
 		success_count += 1
 		print("Test 3: PASSED - Mixed list types")
@@ -101,7 +100,7 @@ func run() -> bool:
 		FileAccess.READ)
 	var yaml4 = f_tmp.get_as_text()
 	f_tmp.close()
-	
+
 	var expected4 = {
 		"config": {
 			"resolution": "1920x1080",
@@ -110,7 +109,7 @@ func run() -> bool:
 		}
 	}
 	test_count += 1
-	var result4 = parser.parse(yaml4)
+	var result4 = YAMLParser.parse(yaml4)
 	if result4 == expected4:
 		success_count += 1
 		print("Test 4: PASSED - Comments and empty lines")
@@ -125,13 +124,13 @@ func run() -> bool:
 		FileAccess.READ)
 	var yaml5 = f_tmp.get_as_text()
 	f_tmp.close()
-	
+
 	var expected5 = {
 		"url": "https://example.com",
 		"time": "12:30:45"
 	}
 	test_count += 1
-	var result5 = parser.parse(yaml5)
+	var result5 = YAMLParser.parse(yaml5)
 	if result5 == expected5:
 		success_count += 1
 		print("Test 5: PASSED")
